@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
@@ -48,8 +48,24 @@ public class Player : MonoBehaviour
         this.enabled = false;
 
         yield return new WaitForSeconds(1f);
-        nextBall.SetActive(true);
+
 
         Destroy(gameObject, 3.5f);
+
+        if (nextBall != null)
+        {
+            nextBall.SetActive(true);
+        }
+        else
+        {
+            Enemy.EnemiesAlive = 0;
+            Invoke("restart", 1f);
+        }
+    }
+
+    private void restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
     }
 }

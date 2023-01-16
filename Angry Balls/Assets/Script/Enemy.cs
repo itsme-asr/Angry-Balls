@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] GameObject deathEffect;
-    private float health = 4f;
+    private float health = 3f;
+    public static int EnemiesAlive = 0;
+    void Start()
+    {
+        EnemiesAlive++;
+    }
+
     private void OnCollisionEnter2D(Collision2D col)
     {
 
@@ -18,6 +24,13 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         Instantiate(deathEffect, transform.position, Quaternion.identity);
+
+        EnemiesAlive--;
         Destroy(gameObject);
+        if (EnemiesAlive <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+        }
     }
 }
