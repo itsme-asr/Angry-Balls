@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    [SerializeField] Rigidbody2D rb;
+    private bool isPressed = false;
+    [SerializeField] private float releaseTime = .15f;
     void Update()
     {
-        
+        if (isPressed)
+        {
+            rb.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
+
+    }
+
+    private void OnMouseDown() // drag
+    {
+        isPressed = true;
+        rb.isKinematic = true;
+    }
+
+    private void OnMouseUp() // release
+    {
+        isPressed = false;
+        rb.isKinematic = false;
+        StartCoroutine(release());
+    }
+
+    IEnumerator release()
+    {
+        yield return new WaitForSeconds(releaseTime);
+        GetComponent<SpringJoint2D>().enabled = false;
     }
 }
