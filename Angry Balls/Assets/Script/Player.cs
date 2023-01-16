@@ -27,11 +27,13 @@ public class Player : MonoBehaviour
         isPressed = false;
         rb.isKinematic = false;
         StartCoroutine(release());
+
     }
 
     IEnumerator release()
     {
         yield return new WaitForSeconds(releaseTime);
         GetComponent<SpringJoint2D>().enabled = false;
+        this.enabled = false;
     }
 }
