@@ -50,6 +50,6 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1f);
         nextBall.SetActive(true);
 
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, 3.5f);
     }
 }
