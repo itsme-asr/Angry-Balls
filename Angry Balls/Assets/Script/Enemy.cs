@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] GameObject deathEffect;
     private float health = 4f;
     private void OnCollisionEnter2D(Collision2D col)
     {
@@ -16,6 +17,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }
