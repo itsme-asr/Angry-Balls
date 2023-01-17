@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Rigidbody2D hook;
     [SerializeField] GameObject nextBall;
+    [SerializeField] AudioSource stringEffect;
     private bool isPressed = false;
     [SerializeField] private float releaseTime = .15f;
 
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
     {
         if (isPressed)
         {
+
             Vector2 mosPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (Vector3.Distance(mosPos, hook.position) > maxDragDistance)
             {
@@ -29,6 +31,7 @@ public class Player : MonoBehaviour
 
     private void OnMouseDown() // drag
     {
+        stringEffect.Play();
         isPressed = true;
         rb.isKinematic = true;
     }

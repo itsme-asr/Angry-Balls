@@ -135,3 +135,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathEffect: {fileID: 8775326382847469374, guid: e00a02d8bf56c11439b376a9149bacde, type: 3}
+  deathAudio: {fileID: 1569335247572887130, guid: 88d53ea86a9f80040b5fe082b427d631, type: 3}

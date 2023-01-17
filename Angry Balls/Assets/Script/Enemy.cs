@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject deathEffect;
     private float health = 3f;
     public static int EnemiesAlive = 0;
+    [SerializeField] AudioSource deathAudio;
     void Start()
     {
         EnemiesAlive++;
@@ -17,6 +18,7 @@ public class Enemy : MonoBehaviour
 
         if (col.relativeVelocity.magnitude > health)
         {
+            deathAudio.Play();
             Die();
         }
     }
@@ -26,6 +28,7 @@ public class Enemy : MonoBehaviour
         Instantiate(deathEffect, transform.position, Quaternion.identity);
 
         EnemiesAlive--;
+
         Destroy(gameObject);
         if (EnemiesAlive <= 0)
         {
